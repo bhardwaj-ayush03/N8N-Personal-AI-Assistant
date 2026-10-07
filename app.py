@@ -42,12 +42,16 @@ if user_message:
     
     # send the user message to the n8n webhook
     response = requests.post(
-        "http://localhost:5678/webhook/6be4ae4d-ead7-4cb8-85fe-c2bb3bec1e91",  # replace with your n8n webhook URL
+        "https://ayush-codes.app.n8n.cloud/webhook-test/45025b7d-0eaf-4340-a0ed-37754d3d473a",  # replace with your n8n webhook URL
         json={"message": user_message}
     )
     
     # get the AI response from webhook
-    ai_response = response.json()[0]["output"]
+    print("STATUS:", response.status_code)
+    print("CONTENT TYPE:", response.headers.get("content-type"))
+    print("RESPONSE:", response.text)
+
+    ai_response = response.text
     
     # display the AI response in chat
     with st.chat_message("assistant"):
